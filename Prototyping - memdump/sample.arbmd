@@ -1,0 +1,8 @@
+Branch name=MAIN
+Branch type=RELEASE
+Version=0001
+
+// Arbeit LANSim memory dump
+
+field : val
+field : {field: {field: val}}

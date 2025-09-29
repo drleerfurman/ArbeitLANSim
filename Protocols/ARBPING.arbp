@@ -1,0 +1,13 @@
+#include
+{
+    ARBPH;
+}
+fun MAIN
+{
+    string sample = "sample value";
+    if (statecode == 1)
+    {
+        consolemsg(sample);
+        statecode = 257;
+    }
+}
