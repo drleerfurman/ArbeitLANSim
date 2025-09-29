@@ -100,9 +100,16 @@ struct wire
     bool noiserecursive = false; // If noise should re-seed itself with itself.
 };
 
+struct protocol
+{
+    std::string name;
+    std::vector<std::string> include;
+    std::vector<std::string> lines;
+};
+
 // Global data: part 2
 std::vector<wire> wiredata;
-std::vector<std::vector<std::string>> protocols;
+std::vector<protocol> protocols;
 
 std::vector<size_t> find_all(std::string source, std::string target)
 {
@@ -243,7 +250,13 @@ void gui_symbols()
 
 void load_protocol(std::string protocolName)
 {
-    // todo file parsing and creating loaded data
+    std::fstream protocol_file(protocolName, std::ios::in);
+    std::string line; int latest_len = protocols.size();
+    protocols.push_back(protocol());
+    while (getline(protocol_file, line))
+    {
+        protocols[latest_len].lines.push_back(line);
+    }
 }
 
 void default_protocol(peerData* peer)
@@ -262,6 +275,7 @@ void think_peer(peerData* peer)
     {
         // todo find and execute protocol advances
     }
+    // todo reframe the timescale tick assumption
 }
 
 void tick_world()
@@ -297,7 +311,7 @@ void IListen()
 
 double deltaClock()
 {
-
+    // todo
 }
 
 int main()
